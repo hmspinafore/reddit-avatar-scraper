@@ -1,3 +1,15 @@
+# Reddit Avatar Scraper
+
+Built on top of [opensea-scraper](https://github.com/dcts/opensea-scraper) as Reddit Collectible Avatars are on polygon, and OpenSea v1 APIs do not support fetching Polygon assets at the time of this code.
+
+## Running
+
+```bash
+npm run floorprice
+```
+
+# Opensea Scraper README Below
+
 # Opensea Scraper
 
 **DISCLAIMER**: You can get accurate realtime floor prices from this official opensea API endpoint: `https://api.opensea.io/api/v1/collection/{slug}/stats`:
