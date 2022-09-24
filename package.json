@@ -6,6 +6,7 @@
   "typings": "./index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "floorprice": "node floorprice.js",
     "demo": "node demo.js"
   },
   "repository": {
