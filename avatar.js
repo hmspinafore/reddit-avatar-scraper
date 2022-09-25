@@ -1,3 +1,5 @@
+const fs = require('fs/promises');
+
 const { offersByUrl } = require("./src/functions/offers.js");
 
 async function floorprices(slug, names, optionsGiven = {}) {
@@ -10,6 +12,7 @@ async function floorprices(slug, names, optionsGiven = {}) {
           floorprice = result.offers[0].floorPrice.amount;
         }
         console.log(`${name}: floor price: ${floorprice}`);
+	fs.writeFile('avatar_floorprices.csv', `${name},${slug},${floorprice}\n`, { flag: 'a' }, err => {});
     });
   }
 }
