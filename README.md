@@ -8,6 +8,75 @@ Built on top of [opensea-scraper](https://github.com/dcts/opensea-scraper) as Re
 npm run floorprice
 ```
 
+## Example output
+
+```base
+$ npm run floorprice
+
+$ node floorprice.js
+===>>> cute-cool-and-creepy-x-reddit-collectible-avatars <<<===
+Tiers: Cat Fish,Ancestral Tree,Golden Hands
+{
+  name: 'Cat Fish #435',
+  tokenId: '434',
+  displayImageUrl: 'https://i.seadn.io/gae/xm7tMN533oqq0FNGN50lW8dUsslmcV5fDz77NhMofL7A1-AXIXk4jsdhWWYMzems6XWKDk4i9h-g5kTuNDAuuKxTgSmgvfOEqOoN?w=500&auto=format',
+  assetContract: '0x47749c5b970e63f3a0ed57cd6cef773e74fafe9d',
+  offerUrl: 'https://opensea.io/assets/0x47749c5b970e63f3a0ed57cd6cef773e74fafe9d/434',
+  floorPrice: { amount: '0.115', currency: 'ETH' }
+}
+Cat Fish: floor price: 0.115
+{
+  name: 'Ancestral Tree #171',
+  tokenId: '920',
+  displayImageUrl: 'https://i.seadn.io/gae/8JswYKk6P-H0InmwyITXdeoGU1HWWzUIihULHkbszYin86FoXZaP5-L64gIc6PfxDr1KPemWSSjVC9uLFhKVG7x_BMYcS41IZ_gtIg?w=500&auto=format',
+  assetContract: '0x47749c5b970e63f3a0ed57cd6cef773e74fafe9d',
+  offerUrl: 'https://opensea.io/assets/0x47749c5b970e63f3a0ed57cd6cef773e74fafe9d/920',
+  floorPrice: { amount: '0.45', currency: 'ETH' }
+}
+Ancestral Tree: floor price: 0.45
+{
+  name: 'Golden Hands #6',
+  tokenId: '1255',
+  displayImageUrl: 'https://i.seadn.io/gae/i9JyTqLXNAMZfTzO7laMnF84y1chj6Cmd00SZ0sC_TQF57PaIgho69JPuR9wdHiUwp64b9p-gZyW5pneie_OE62-VAkWaj6OFqLM6w?w=500&auto=format',
+  assetContract: '0x47749c5b970e63f3a0ed57cd6cef773e74fafe9d',
+  offerUrl: 'https://opensea.io/assets/0x47749c5b970e63f3a0ed57cd6cef773e74fafe9d/1255',
+  floorPrice: { amount: '9.95', currency: 'ETH' }
+}
+Golden Hands: floor price: 9.95
+=====================
+
+===>>> i-quit-my-job-to-be-an-artist-x-reddit-collectibl <<<===
+Tiers: Frustrated,Progress,Confidence
+{
+  name: 'Frustrated #949',
+  tokenId: '948',
+  displayImageUrl: 'https://i.seadn.io/gae/Imbyl0Ps1CUGePSNFodqOf68V_8nHQ4t6NVpdqlQ-2EhHQcoazBXIo6m-lc6ZRKUSTKPo9yuePWkAnasr1eLxnGUuyQXRg9yOhEyUzs?w=500&auto=format',
+  assetContract: '0x65a83530ca8abc27969907913fe5e641a5da2e9f',
+  offerUrl: 'https://opensea.io/assets/0x65a83530ca8abc27969907913fe5e641a5da2e9f/948',
+  floorPrice: { amount: '0.0445', currency: 'ETH' }
+}
+Frustrated: floor price: 0.0445
+{
+  name: 'Progress #384',
+  tokenId: '1883',
+  displayImageUrl: 'https://i.seadn.io/gae/qK1QHof28nDF27tJKj26yXqPEFeqtF9FDFJcVFB8AkA5YcqpwQpPKO33Wa5bu0rjlT1JEfLKUGdQVPb4EKvRQchGlAJAt-rcjh6Y?w=500&auto=format',
+  assetContract: '0x65a83530ca8abc27969907913fe5e641a5da2e9f',
+  offerUrl: 'https://opensea.io/assets/0x65a83530ca8abc27969907913fe5e641a5da2e9f/1883',
+  floorPrice: { amount: '0.1', currency: 'ETH' }
+}
+Progress: floor price: 0.1
+{
+  name: 'Confidence #150',
+  tokenId: '2549',
+  displayImageUrl: 'https://i.seadn.io/gae/g3-V4-kM0tVirZSmH49qsrY1_gj3WrBMH5o3NqHBuCCjePPzsM75t-vowWbN6Pw1FSa6Z1OAA10UbRYyY9GptiQ6L5r8cWhTnD5e?w=500&auto=format',
+  assetContract: '0x65a83530ca8abc27969907913fe5e641a5da2e9f',
+  offerUrl: 'https://opensea.io/assets/0x65a83530ca8abc27969907913fe5e641a5da2e9f/2549',
+  floorPrice: { amount: '1.61', currency: 'ETH' }
+}
+Confidence: floor price: 1.61
+=====================
+```
+
 # Opensea Scraper README Below
 
 # Opensea Scraper

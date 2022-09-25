@@ -1,8 +1,8 @@
 const { offersByUrl } = require("./src/functions/offers.js");
 
-function floorprices(slug, names, optionsGiven = {}) {
-  for (const name of names) {
-    floorpriceByName(slug, name, optionsGiven).then(
+async function floorprices(slug, names, optionsGiven = {}) {
+  for await (const name of names) {
+    await floorpriceByName(slug, name, optionsGiven).then(
       result => {
         floorprice = undefined;
         if (result.offers.length > 0) {
