@@ -12,7 +12,9 @@ const slugs_with_tiers = new Map([
   ["enlightenment-x-reddit-collectible-avatars", ["Raiza", "Etsuko", "Miran"]],
   ["drag-queens-of-big-gay-baby-x-reddit-collectible", ["April May", "Miss Ophelia Surprise", "Hydrogen Purroxide"]],
   ["creatures-of-the-nighties-x-reddit-collectible", ["Possum", "Dark Wolf", "Red Bat"]],
-  ["joy-girls-club-x-reddit-collectible-avatars", ["Joy Kawaii Cowgirl", "Disco Queen Joy Girl", "Joy Kawaii Material Girl"]],
+  // supposed to be below, but truncating to allow Opensea to search properly.
+  // ["joy-girls-club-x-reddit-collectible-avatars", ["Joy Kawaii Cowgirl", "Disco Queen Joy Girl", "Joy Kawaii Material Girl"]]
+  ["joy-girls-club-x-reddit-collectible-avatars", ["Joy Kawaii Cowgirl", "Disco Queen", "Kawaii Material"]],
   ["avatar-rock-out-x-reddit-collectible-avatars", ["Les Rock", "Lara Lava", "Julia Jewels"]],
   ["protectors-of-the-forest-x-reddit-collectible-avat", ["Dragonfly", "Butterfly", "Birdie"]],
   ["bites-of-brazil-x-reddit-collectible-avatars", ["Sandro", "Flor", "Maria"]],
@@ -47,11 +49,18 @@ const options = {
   browserInstance: undefined,
 };
 
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var dateTime = date+' '+time;
+ 
+console.log(dateTime);
+
 (async () => {
   for (const [slug, tiers] of slugs_with_tiers) {
     console.log(`===>>> ${slug} <<<===`);
     console.log(`Tiers: ${tiers}`);
-    
+
     await RedditAvatarScraper.floorprices(slug, tiers, options);
     console.log(`=====================\n`);
   }
