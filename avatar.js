@@ -7,12 +7,15 @@ async function floorprices(slug, names, optionsGiven = {}) {
     await floorpriceByName(slug, name, optionsGiven).then(
       result => {
         floorprice = undefined;
+	extracted_name = undefined;
         if (result.offers.length > 0) {
           console.log(result.offers[0]);
           floorprice = result.offers[0].floorPrice.amount;
+	  extracted_name = result.offers[0].name.split("#")[0].trim()
+          console.log(`Extracted full name: ${extracted_name}`);
         }
         console.log(`${name}: floor price: ${floorprice}`);
-	fs.writeFile('avatar_floorprices.csv', `${name},${slug},${floorprice}\n`, { flag: 'a' }, err => {});
+	fs.writeFile('avatar_floorprices.csv', `${extracted_name},${slug},${floorprice}\n`, { flag: 'a' }, err => {});
     });
   }
 }
