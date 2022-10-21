@@ -69,6 +69,7 @@ const offersByUrl = async (url, optionsGiven = {}) => {
   let browser = browserInstance;
   if (!customPuppeteerProvided) {
     browser = await puppeteer.launch({
+      executablePath: '/usr/bin/chromium-browser',
       headless: !debug, // when debug is true => headless should be false
       args: ['--start-maximized'],
     });
@@ -218,7 +219,79 @@ function _extractAssetContract(offerObj, assetContractDict) {
   }
 }
 
+const getBrowser = async (url, options) => {
+  const { debug, logs, browserInstance, sort, additionalWait } = options;
+  const customPuppeteerProvided = Boolean(options.browserInstance);
+
+  logs && console.log(`=== scraping started ===\nScraping Opensea URL: ${url}`);
+  logs && console.log(`\n=== options ===\ndebug          : ${debug}\nlogs           : ${logs}\nbrowserInstance: ${browserInstance ? "provided by user" : "default"}`);
+
+  // init browser
+  let browser = browserInstance;
+  if (!customPuppeteerProvided) {
+    browser = await puppeteer.launch({
+      executablePath: '/usr/bin/chromium-browser',
+      headless: !debug, // when debug is true => headless should be false
+      args: ['--start-maximized'],
+    });
+  }
+  customPuppeteerProvided && warnIfNotUsingStealth(browser);
+
+  return browser;
+}
+
+const offersByUrlWithBrowser = async (url, browser, options) => {
+  const { debug, logs, browserInstance, sort, additionalWait } = options;
+  const customPuppeteerProvided = Boolean(options.browserInstance);
+
+  // add mandatory query params
+  // fixes a bug, see following link:
+  // https://github.com/dcts/opensea-scraper/pull/26
+  const mandatoryQueryParam = "search[toggles][0]=BUY_NOW";
+  if (!url.includes(mandatoryQueryParam)) {
+    const joinChar = url.includes("?") ? "&" : "?";
+    url += `${joinChar}${mandatoryQueryParam}`;
+  }
+  logs && console.log(`=== scraping started ===\nScraping Opensea URL: ${url}`);
+  logs && console.log(`\n=== options ===\ndebug          : ${debug}\nlogs           : ${logs}\nbrowserInstance: ${browserInstance ? "provided by user" : "default"}`);
+
+  logs && console.log("\n=== actions ===");
+  logs && console.log("new page created");
+  const page = await browser.newPage();
+  logs && console.log(`opening url ${url}`);
+  await page.goto(url);
+
+  // ...🚧 waiting for cloudflare to resolve
+  logs && console.log("🚧 waiting for cloudflare to resolve...");
+  await page.waitForSelector('.cf-browser-verification', {hidden: true});
+
+  // additional wait?
+  if (additionalWait > 0) {
+    logs && console.log(`additional wait active, waiting ${additionalWait / 1000} seconds...`);
+    await sleep(additionalWait);
+  }
+
+  // extract __wired__ variable
+  logs && console.log("extracting __wired__ variable");
+  const html = await page.content();
+  const __wired__ = _parseWiredVariable(html);
+  
+  // extract testnet
+  const isTestnet = url.includes("testnets.opensea.io");
+  logs && console.log("extracting if testnet detected... isTestnet = " + isTestnet);
+
+  logs && console.log("extracting offers and stats from __wired__ variable");
+  return {
+    offers: _extractOffers(__wired__, sort, isTestnet),
+    stats: _extractStats(__wired__),
+  };
+}
+
+
+
 module.exports = {
   offers,
-  offersByUrl
+  offersByUrl,
+  getBrowser,
+  offersByUrlWithBrowser
 };
