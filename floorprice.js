@@ -61,7 +61,9 @@ const slugs_with_tiers = new Map([
   ["spooky-season-baldtuesdays-x-reddit-collectible", ["The Unidentified", "HandFull", "Skin and Bones"]],
   ["spooky-season-laura-dumitriu-x-reddit-collectible", ["The Robot", "The Devil", "SnakeEye"]],
   ["spooky-season-sys32template-x-reddit-collectible-a", ["Alt Account"]],
-  ["spooky-season-bodegacatceo-x-reddit-collectible-av", ["GUARDIAN OF THE REALMS", "EYE OF THE BEHOLDER", "BINDED SOULS"]],
+  // enable search properly for EYE OF THE BEHOLDER
+  //["spooky-season-bodegacatceo-x-reddit-collectible-av", ["GUARDIAN OF THE REALMS", "EYE OF THE BEHOLDER", "BINDED SOULS"]],
+  ["spooky-season-bodegacatceo-x-reddit-collectible-av", ["GUARDIAN", "BEHOLDER", "BINDED SOULS"]],
   ["spooky-season-tandizojere-x-reddit-collectible-ava", ["Tina", "The Knower", "My Rotten Soldier"]],
   ["spooky-season-canetoonist-x-reddit-collectible-ava", ["Cosplay", "Spooky Spaghetti", "Final Boss"]],
   ["spooky-season-fmarxy-x-reddit-collectible-avatars", ["Glowstickman", "Leave me alone big bro"]],
